@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fullstack Mentorship Dashboard</title>
+    <link rel="stylesheet" href="./style/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="Mentor dashboard home">
+          <span class="brand-mark">M</span>
+          <span>
+            <strong>Mentor Kit</strong>
+            <small>Beginner to job-ready</small>
+          </span>
+        </a>
+
+        <nav class="nav-list" aria-label="Dashboard navigation">
+          <button class="nav-button active" type="button" data-section="overview">Overview</button>
+          <button class="nav-button" type="button" data-section="daily-plan">Daily Plan</button>
+          <button class="nav-button" type="button" data-section="videos">Videos</button>
+          <button class="nav-button" type="button" data-section="snippets">Code Samples</button>
+          <button class="nav-button" type="button" data-section="homework">Homework</button>
+          <button class="nav-button" type="button" data-section="assessments">Tests</button>
+          <button class="nav-button" type="button" data-section="rubric">Readiness</button>
+        </nav>
+
+        <div class="sidebar-panel">
+          <p class="eyebrow">Progress</p>
+          <div class="progress-meter" aria-label="Completed days">
+            <span id="progressPct">0%</span>
+          </div>
+          <p id="progressText">0 of 60 days complete</p>
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Fullstack mentorship</p>
+            <h1>Daily Mentor Dashboard</h1>
+            <p class="lede">Teach one day at a time with analogies, videos, copyable code samples, homework, tests, and progress notes.</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="secondary-button" id="printBtn" type="button">Print</button>
+            <button class="secondary-button danger" id="resetProgressBtn" type="button">Reset Progress</button>
+          </div>
+        </header>
+
+        <section class="section active" id="overview">
+          <div class="section-heading">
+            <p class="eyebrow">Start here</p>
+            <h2>How To Use This Dashboard</h2>
+            <p>Use the daily plan during mentorship sessions, then use homework and tests to check if the learner is actually absorbing the material.</p>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span class="stat-number">12</span>
+              <span class="stat-label">Weeks</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-number">60</span>
+              <span class="stat-label">Mentorship Days</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-number">12</span>
+              <span class="stat-label">Stage Tests</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-number" id="snippetCount">39</span>
+              <span class="stat-label">Code Samples</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-number">1</span>
+              <span class="stat-label">Final Capstone</span>
+            </article>
+          </div>
+
+          <div class="overview-layout">
+            <article class="panel">
+              <h3>Daily Teaching Flow</h3>
+              <ol class="clean-list numbered">
+                <li>Ask what they remember from the previous session.</li>
+                <li>Explain the new concept with a simple analogy.</li>
+                <li>Watch or assign the recommended video section.</li>
+                <li>Demo the smallest useful example.</li>
+                <li>Let the learner build a similar version.</li>
+                <li>Assign homework and a research question.</li>
+                <li>End with checkpoint questions.</li>
+              </ol>
+            </article>
+
+            <article class="panel accent-panel">
+              <h3>Mentor Rule</h3>
+              <p>Do not move forward just because the calendar says so. Move forward when they can explain the concept in plain language and build a tiny working example.</p>
+            </article>
+          </div>
+
+          <div class="timeline-strip" id="overviewTimeline"></div>
+        </section>
+
+        <section class="section" id="daily-plan">
+          <div class="section-heading">
+            <p class="eyebrow">Day by day</p>
+            <h2>Mentorship Plan</h2>
+            <p>Select a week, search a topic, mark days complete, and keep private mentor notes in your browser.</p>
+          </div>
+
+          <div class="toolbar">
+            <label>
+              Week
+              <select id="weekFilter"></select>
+            </label>
+            <label>
+              Search
+              <input id="daySearch" type="search" placeholder="Search React, DNS, auth..." />
+            </label>
+          </div>
+
+          <div class="week-summary" id="weekSummary"></div>
+          <div class="day-grid" id="dayGrid"></div>
+        </section>
+
+        <section class="section" id="videos">
+          <div class="section-heading">
+            <p class="eyebrow">Watch list</p>
+            <h2>YouTube And Research Library</h2>
+            <p>Assign one main video per day. Ask for notes, then make them build something small without copying.</p>
+          </div>
+
+          <div class="toolbar">
+            <label>
+              Phase
+              <select id="videoFilter"></select>
+            </label>
+          </div>
+          <div class="resource-grid" id="videoGrid"></div>
+        </section>
+
+        <section class="section" id="snippets">
+          <div class="section-heading">
+            <p class="eyebrow">Copyable examples</p>
+            <h2>Code Sample Library</h2>
+            <p>Use these snippets during live demos, guided practice, or homework review. Daily lessons also show the most relevant examples automatically.</p>
+          </div>
+
+          <div class="toolbar">
+            <label>
+              Topic
+              <select id="snippetFilter"></select>
+            </label>
+          </div>
+          <div class="snippet-grid" id="snippetGrid"></div>
+        </section>
+
+        <section class="section" id="homework">
+          <div class="section-heading">
+            <p class="eyebrow">Assignments</p>
+            <h2>Homework Board</h2>
+            <p>Use this view when you only want the learner's independent work for each day.</p>
+          </div>
+
+          <div class="toolbar">
+            <label>
+              Week
+              <select id="homeworkWeekFilter"></select>
+            </label>
+          </div>
+          <div class="homework-list" id="homeworkList"></div>
+        </section>
+
+        <section class="section" id="assessments">
+          <div class="section-heading">
+            <p class="eyebrow">Stage checks</p>
+            <h2>Tests For Each Stage</h2>
+            <p>Run these at the end of each phase. A learner passes when they can explain, build, debug, and submit the work.</p>
+          </div>
+
+          <div class="assessment-grid" id="assessmentGrid"></div>
+        </section>
+
+        <section class="section" id="rubric">
+          <div class="section-heading">
+            <p class="eyebrow">Job readiness</p>
+            <h2>Final Evaluation Rubric</h2>
+            <p>The learner is ready for supervised junior work when they can complete the capstone workflow with normal review support.</p>
+          </div>
+
+          <div class="rubric-grid" id="rubricGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
