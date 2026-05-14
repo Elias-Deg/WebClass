@@ -7,6 +7,7 @@ This is a plain HTML, CSS, and JavaScript site. It does not need a server, build
 ## What It Includes
 
 - 12-week mentorship overview
+-example
 - 60 day-by-day lesson plans
 - YouTube and research links
 - Copyable code samples inside each relevant lesson
